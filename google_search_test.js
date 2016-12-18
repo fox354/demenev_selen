@@ -54,7 +54,7 @@ test.describe('Google Search', function() {
     yield driver.get('http://www.google.com/ncr');
     yield driver.findElement(By.name('q')).sendKeys('webdriver');
     yield driver.findElement(By.name('btnG')).click();
-    yield driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+    yield driver.wait(until.titleIs('webdriver - Поиск в Google'), 1000);
   });
 
   test.after(() => driver.quit());
