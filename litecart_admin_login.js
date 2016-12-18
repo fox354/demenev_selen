@@ -10,7 +10,7 @@ test.describe('Google Search', function() {
   test.before(function() {
     //driver = new webdriver.Builder().forBrowser('chrome').build();
     //driver = new webdriver.Builder().forBrowser('ie').build();
-    //driver = new webdriver.Builder().forBrowser('firefox').build();
+    driver = new webdriver.Builder().forBrowser('firefox').build();
   });
 
   test.it('should append query to title', function() {
