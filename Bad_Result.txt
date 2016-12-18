@@ -1,0 +1,70 @@
+
+
+  Google Search
+    1) works with promises
+    2) works with generators
+    3) "after all" hook: ret
+
+
+  0 passing (13s)
+  3 failing
+
+  1) Google Search works with promises:
+     Error: Timeout of 10000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
+  
+
+  2) Google Search works with generators:
+     Error: ECONNREFUSED connect ECONNREFUSED 127.0.0.1:10584
+      at ClientRequest.<anonymous> (node_modules\selenium-webdriver\http\index.js:238:15)
+      at Socket.socketErrorListener (_http_client.js:309:9)
+      at emitErrorNT (net.js:1281:8)
+      at _combinedTickCallback (internal/process/next_tick.js:74:11)
+      at process._tickCallback (internal/process/next_tick.js:98:9)
+  From: Task: WebDriver.navigate().to(http://www.google.com/ncr)
+      at Driver.schedule (node_modules\selenium-webdriver\lib\webdriver.js:816:17)
+      at Navigation.to (node_modules\selenium-webdriver\lib\webdriver.js:1140:25)
+      at Driver.get (node_modules\selenium-webdriver\lib\webdriver.js:997:28)
+      at Context.<anonymous> (google_search_test.js:54:18)
+      at Generator.next (<anonymous>)
+      at pump (node_modules\selenium-webdriver\lib\promise.js:3221:25)
+      at callNext (node_modules\selenium-webdriver\lib\promise.js:3207:7)
+      at createPromise (node_modules\selenium-webdriver\lib\promise.js:3203:5)
+      at new ManagedPromise (node_modules\selenium-webdriver\lib\promise.js:1067:7)
+      at createPromise (node_modules\selenium-webdriver\lib\promise.js:2029:10)
+      at Object.consume (node_modules\selenium-webdriver\lib\promise.js:3201:16)
+      at runTest (node_modules\selenium-webdriver\testing\index.js:164:27)
+      at node_modules\selenium-webdriver\testing\index.js:187:16
+      at new ManagedPromise (node_modules\selenium-webdriver\lib\promise.js:1067:7)
+      at controlFlowExecute (node_modules\selenium-webdriver\testing\index.js:186:14)
+      at TaskQueue.execute_ (node_modules\selenium-webdriver\lib\promise.js:2970:14)
+      at TaskQueue.executeNext_ (node_modules\selenium-webdriver\lib\promise.js:2953:27)
+      at asyncRun (node_modules\selenium-webdriver\lib\promise.js:2860:25)
+      at node_modules\selenium-webdriver\lib\promise.js:676:7
+  From: Task: Google Search works with generators
+      at Context.ret (node_modules\selenium-webdriver\testing\index.js:185:10)
+
+  3) Google Search "after all" hook: ret:
+     Error: ECONNREFUSED connect ECONNREFUSED 127.0.0.1:10584
+      at ClientRequest.<anonymous> (node_modules\selenium-webdriver\http\index.js:238:15)
+      at Socket.socketErrorListener (_http_client.js:309:9)
+      at emitErrorNT (net.js:1281:8)
+      at _combinedTickCallback (internal/process/next_tick.js:74:11)
+      at process._tickCallback (internal/process/next_tick.js:98:9)
+  From: Task: WebDriver.quit()
+      at Driver.schedule (node_modules\selenium-webdriver\lib\webdriver.js:816:17)
+      at Driver.quit (node_modules\selenium-webdriver\lib\webdriver.js:849:23)
+      at Context.test.after (google_search_test.js:60:27)
+      at runTest (node_modules\selenium-webdriver\testing\index.js:166:22)
+      at node_modules\selenium-webdriver\testing\index.js:187:16
+      at new ManagedPromise (node_modules\selenium-webdriver\lib\promise.js:1067:7)
+      at controlFlowExecute (node_modules\selenium-webdriver\testing\index.js:186:14)
+      at TaskQueue.execute_ (node_modules\selenium-webdriver\lib\promise.js:2970:14)
+      at TaskQueue.executeNext_ (node_modules\selenium-webdriver\lib\promise.js:2953:27)
+      at asyncRun (node_modules\selenium-webdriver\lib\promise.js:2860:25)
+      at node_modules\selenium-webdriver\lib\promise.js:676:7
+  From: Task: Google Search "after all" hook: ret
+      at Context.ret (node_modules\selenium-webdriver\testing\index.js:185:10)
+
+
+
+[Finished in 14.3s]
