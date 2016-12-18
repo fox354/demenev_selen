@@ -1,9 +1,3 @@
-/**
-    chrome_driver = new webdriver.Builder().forBrowser('chrome').build();
-    ie_driver = new webdriver.Builder().forBrowser('ie').build();
-    firefox_driver = new webdriver.Builder().forBrowser('firefox').build();
-**/
-
 var webdriver = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
     By = webdriver.By,
@@ -21,7 +15,7 @@ test.describe('Google Search', function() {
 
   test.it('should append query to title', function() {
     driver.get('http://www.google.com');
-    driver.manage().timeouts().implicitlyWait(10000/*ms*/);
+    driver.manage().timeouts().implicitlyWait(2000/*ms*/);
     driver.findElement(By.name('q')).sendKeys('webdriver');
     driver.findElement(By.name('btnG')).click();
     driver.wait(until.titleIs('webdriver - Поиск в Google'), 10000);
