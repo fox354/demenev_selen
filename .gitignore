@@ -5,6 +5,7 @@ node_modules
 #IGNORE SublimeText FILES
 #####################
 *.sublime-workspace
+*.sublime-project
 
 #IGNORE Other FILES
 #####################
