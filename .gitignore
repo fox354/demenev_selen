@@ -1,17 +1,11 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
-logs
-results
-
+#IGNORE npm selenium-webdriver FILES
+#####################
 node_modules
-npm-debug.log
-.tern-project
+
+#IGNORE SublimeText FILES
+#####################
 *.sublime-workspace
+
+#IGNORE Other FILES
+#####################
+.tern-project
