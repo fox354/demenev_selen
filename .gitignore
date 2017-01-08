@@ -1,11 +1,10 @@
-#IGNORE npm selenium-webdriver FILES
+#IGNORE catalog
 #####################
 node_modules
+.idea
 
-#IGNORE SublimeText FILES
+#IGNORE FILES
 #####################
 *.sublime-workspace
-
-#IGNORE Other FILES
-#####################
-.tern-project
+*.tern-project
+*.project
