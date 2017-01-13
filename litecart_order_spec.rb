@@ -11,13 +11,17 @@ describe 'litecart admin-menu clicker' do
 
   it 'clicker' do
 
-    @driver.navigate.to 'http://localhost/litecart/admin/login.php'
+    @driver.navigate.to 'http://localhost/litecart/admin/?app=countries&doc=countries'
     @driver.find_element(:name, 'username').send_keys'admin'
     @driver.find_element(:name, 'password').send_keys'admin'
     @driver.find_element(:name, 'login').click
     @wait.until { @driver.title == 'My Store'}
 
-    @driver.navigate.to 'http://localhost/litecart/admin/?app=countries&doc=countries'
+    test = driver.find_elements(:xpath, '//a[contains(@href]')
+    puts test
+
+    # @driver.find_elements(:name, 'login').click
+
 
     # Для решения задачи мы получим массив слов, потом сохраним его в сортированном виде в новый массив и сравним их
     #
