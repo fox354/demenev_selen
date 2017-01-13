@@ -43,14 +43,12 @@ describe 'Homework 09' do
 
     # Задание 1
     @driver.navigate.to 'http://localhost/litecart/admin/?app=countries&doc=countries'
-
     litecart_where()
     puts 'Список стран:'
     countr_name_list = [] # Создаем массив под countries:name
     countrzone_link = [] # Создаем массив под countries:link имеюие вложенные zone
 
     countr_list = @driver.find_elements(:xpath, "//*[@class='dataTable']//td[5]/a")
-
     puts ('> Количество элементов: ' + countr_list.size.to_s)
 
     # Построчным перебором записываем countries:name в массив countr_name_list
@@ -70,33 +68,29 @@ describe 'Homework 09' do
     # Перебором проверяем zone_value
     link_stp = 0
     for link_stp in link_stp...(countrzone_link.size)
-        @driver.navigate.to (countrzone_link[link_stp]) # Перебираем пулл ссылок
+      @driver.navigate.to (countrzone_link[link_stp]) # Перебираем пулл ссылок
+      litecart_where()
 
-        litecart_where()
+      zone_name_list = [] # Создаем массив под zone:name
 
-        zone_name_list = [] # Создаем массив под zone:name
+      zone_list = @driver.find_elements(:css, '.dataTable tr a')
+      puts ('> Количество элементов: ' + zone_list.size.to_s)
 
-        zone_list = @driver.find_elements(:css, '.dataTable tr a')
+      # Построчным перебором записываем zone:name в массив zone_name_list
+      zone_stp = 0
+      for zone_stp in zone_stp...(zone_list.size)
+        zone_name_list[zone_stp] = zone_list[zone_stp].attribute('innerText')
+      end
 
-        puts ('> Количество элементов: ' + zone_list.size.to_s)
-
-        # Построчным перебором записываем zone:name в массив zone_name_list
-        zone_stp = 0
-        for zone_stp in zone_stp...(zone_list.size)
-          zone_name_list[zone_stp] = zone_list[zone_stp].attribute('innerText')
-        end
-
-        litecart_sort(zone_name_list) # Проверка сортировку
-        @driver.navigate.to 'http://localhost/litecart/admin/?app=countries&doc=countries'
-
+      litecart_sort(zone_name_list) # Проверка сортировки
     end
 
     # Задание 2
     @driver.navigate.to 'http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones'
-
     litecart_where()
 
     geozone = @driver.find_elements(:xpath, "//*[@class='dataTable']//td[3]/a")
+
     geozone_link = []
 
     # Получаем пулл ссылок доступных зон
@@ -105,6 +99,7 @@ describe 'Homework 09' do
       geozone_link[stp] = @driver.find_elements(:xpath, "//*[@class='dataTable']//td[3]/a")[stp].attribute('href')
     end
 
+    # Берем ссылку из geozone_link, и построчным перебором записываем subzone:name в массив geo_name_list
     stp = 0
     for stp in stp...(geozone.size)
       @driver.navigate.to (geozone_link[stp]) # Перебираем пулл ссылок
@@ -112,20 +107,19 @@ describe 'Homework 09' do
 
       litecart_where()
 
-      geozone_list = @driver.find_elements(:css, '.dataTable tr #remove-zone') # Количество зон
-      puts ('> Количество элементов: ' + geozone_list.size.to_s)
+      subgeozone_list = @driver.find_elements(:css, '.dataTable tr #remove-zone') # Количество зон
+      puts ('> Количество элементов: ' + subgeozone_list.size.to_s)
 
-      geo_name_list = [] # Создаем массив под geozone:name
+      subgeo_name_list = [] # Создаем массив под geozone:name
 
-      # Построчным перебором записываем geozone:name в массив geo_name_list
-      geo_stp = 0
-      for geo_stp in geo_stp...(geozone_list.size)
-        geozone_selected = @driver.find_elements(:css, '.dataTable td:nth-child(3) > select > option[selected=selected]')
-        geo_name_list[geo_stp] = geozone_selected[geo_stp].attribute('textContent')
+      # Построчным перебором записываем subzone:name в массив geo_name_list
+      subgeo_stp = 0
+      for geo_stp in subgeo_stp...(subgeozone_list.size)
+        subgeozone_selected = @driver.find_elements(:css, '.dataTable td:nth-child(3) > select > option[selected=selected]')
+        subgeo_name_list[geo_stp] = subgeozone_selected[geo_stp].attribute('textContent')
       end
 
-      litecart_sort(geo_name_list) # Проверка сортировки
-
+      litecart_sort(subgeo_name_list) # Проверка сортировки
     end
 
   end
@@ -134,9 +128,3 @@ describe 'Homework 09' do
     @driver.quit
   end
 end
-
-
-# Опробованные селекторы:
-# countries_css1 = @driver.find_elements(:css, '.dataTable a:not([title="Edit"])')
-# countries_css2 = @driver.find_elements(:css, 'tr.row > td:nth-child(5)')
-# countries_xpath = @driver.find_elements(:xpath, "//*[@class='dataTable']//td[5]/a")
