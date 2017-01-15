@@ -7,9 +7,11 @@ describe 'Homework 09' do
     @driver = Selenium::WebDriver.for(:chrome)
     puts PP.pp(@driver.capabilities)
     @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+  end
 
+  it 'lists sort' do
+    # Определяем текущую страницу
     def litecart_where()
-      # Определяем страницу где обитаем
       space = @driver.find_element(:css => 'h1').attribute('innerText')
       if space == ' Edit Country'
         space =  @driver.find_element(:xpath, "//input[@name='name']").attribute('value')
@@ -22,7 +24,8 @@ describe 'Homework 09' do
       end
     end
 
-    def litecart_sort(array) # Сравниваем array с arra.sort: 0 - хорошо; иначе останавливаем тест с ошибкой
+    # Сравниваем array с arra.sort: 0 - хорошо; иначе останавливаем тест с ошибкой
+    def litecart_sort(array)
       if (array <=> array.sort)!=0
         puts ('> Сортировка по алфавиту: ОШИБКА!')
         raise
@@ -30,10 +33,6 @@ describe 'Homework 09' do
         puts ('> Сортировка по алфавиту: Ок')
       end
     end
-
-  end
-
-  it 'lists sort' do
 
     @driver.navigate.to 'http://localhost/litecart/admin/'
     @driver.find_element(:name, 'username').send_keys'admin'
